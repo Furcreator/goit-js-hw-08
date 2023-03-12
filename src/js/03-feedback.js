@@ -12,6 +12,7 @@ form.addEventListener('submit', onSubmit)
 localStorageInput();
 
 function addToLocalStorage(e){
+    
     formData[e.target.name] = e.target.value;
     const JsonFormData = JSON.stringify(formData);
     localStorage.setItem(STORAGE_KEY, JsonFormData);
@@ -20,6 +21,7 @@ function addToLocalStorage(e){
 function onSubmit(e){
     e.preventDefault();
     e.currentTarget.reset();
+    console.log(formData);
     localStorage.removeItem(STORAGE_KEY)
 }
 
@@ -28,7 +30,7 @@ function localStorageInput(){
     if(setMassage){
         Object.entries(setMassage).forEach(([key, value]) => {
             form.elements[key].value = value;
+            formData[key] = value;
         });
-        
     }
 }
